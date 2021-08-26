@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Headers, InternalServerErrorException, UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
+import { User } from 'src/config/decorators';
 import { CustomFilter } from 'src/config/filters';
 import { CustomGuard } from 'src/config/guards';
 import { CustomInterceptor } from 'src/config/interceptors';
@@ -38,5 +39,11 @@ export class DemoController {
     @UseFilters(CustomFilter)
     async filter(@Body() req: DemoFilterDto){
         throw new InternalServerErrorException()
+    }
+
+    @Get("/decorator")
+    async decorator(@User("uid") returnValue: String){
+        // returnValue from /config/decorators/index.ts
+        console.log(returnValue)
     }
 }
