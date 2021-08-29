@@ -6,12 +6,11 @@ import { Request, Response } from 'express';
 @Catch(HttpException)
 export class CustomFilter<T extends HttpException> implements ExceptionFilter {
   catch(exception: T, host: ArgumentsHost) {
+    let message;
     const context = host.switchToHttp()
     const req = context.getRequest<Request>()
     const res = context.getResponse<Response>()
     const status = exception.getStatus()
-
-    let message;
 
     switch(status){
         case 403:
