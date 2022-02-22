@@ -1,10 +1,9 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { ApisModule } from './apis/apis.module';
 import { CustomMiddleware } from './common/middleware';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { typeOrmOptions } from './config/db';
 
 @Module({
   imports: [
@@ -14,19 +13,8 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
       ignoreEnvFile: true,
       envFilePath: `.env${process.env.NODE_ENV == "dev" ? "" : ".production"} `
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      port: 5432,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      entities: ['dist/**/*.entity.{js,ts}'],
-      synchronize: false,
-      autoLoadEntities: true,
-    }),
+    TypeOrmModule.forRoot(typeOrmOptions),
   ],
-  controllers: [AppController],
 })
 
 // Middleware使用

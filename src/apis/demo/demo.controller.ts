@@ -12,11 +12,6 @@ export class DemoController {
         private demoService: DemoService
     ){}
 
-    @Get("/transaction")
-    async transaction(@Body() req: DemoTransactionDto): Promise<TransactionType>{
-        return await this.demoService.transaction(req)
-    }
-
     @Get("/transaction/typeorm")
     async typeormTransaction(@Body() req: DemoTransactionDto){
         return await this.demoService.typeormTransaction(req)

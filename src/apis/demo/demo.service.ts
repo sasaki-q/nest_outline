@@ -1,29 +1,10 @@
 import { Injectable, InternalServerErrorException} from '@nestjs/common';
-import { pool } from 'src/config/db';
-import { Connection, getConnection } from 'typeorm';
+import { Connection } from 'typeorm';
 import { DemoTransactionDto } from './dto';
 
 @Injectable()
 export class DemoService {
     constructor(private connection: Connection){}
-    async transaction(req: DemoTransactionDto){
-        const {id, uid} = req;
-        const firstSql = "SELECT * FROM user WHERE id = $1"
-        const secondSql = "SELECT * FROM user WHERE uid = $1"
-        const transactionPool = await pool.connect();
-        try{
-            await transactionPool.query("BEGIN");
-            let firstUser = await transactionPool.query(firstSql, [id])
-            let secondUser = await transactionPool.query(secondSql, [uid])
-            await transactionPool.query("COMMIT")
-            return { statusCode: 200, result: "success"}
-        }catch(err){
-            await transactionPool.query("ROLLBACK")
-            throw new InternalServerErrorException()
-        }finally{
-            transactionPool.release();
-        }
-    }
 
     async typeormTransaction(req: DemoTransactionDto){
         const {id, uid} = req;
