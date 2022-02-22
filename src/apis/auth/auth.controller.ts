@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { AuthDecorator } from 'src/config/decorators/auth_decorator';
+import { AuthDecorator } from 'src/common/decorators/auth_decorator';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto';
 

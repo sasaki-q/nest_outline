@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { CustomFilter } from './config/filters';
-import { CustomGuard } from './config/guards';
-import { CustomInterceptor } from './config/interceptors';
+import { CustomFilter } from './common/filters';
+import { CustomGuard } from './common/guards';
+import { CustomInterceptor } from './common/decorators/interceptors';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule,);

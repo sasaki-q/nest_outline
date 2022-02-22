@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Headers, InternalServerErrorException, UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
-import { User } from 'src/config/decorators';
-import { CustomFilter } from 'src/config/filters';
-import { CustomGuard } from 'src/config/guards';
-import { CustomInterceptor } from 'src/config/interceptors';
+import { User } from 'src/common/decorators';
+import { CustomFilter } from 'src/common/filters';
+import { CustomGuard } from 'src/common/guards';
+import { CustomInterceptor } from 'src/common/decorators/interceptors';
 import { DemoService } from './demo.service';
 import { DemoFilterDto, DemoGuardDto, DemoTransactionDto } from "./dto";
 

@@ -2,11 +2,6 @@ import { CanActivate, ExecutionContext, Injectable, InternalServerErrorException
 import { Request } from 'express';
 import { Observable } from 'rxjs';
 
-interface GuardType{
-  statusCode: number;
-  message: String;
-}
-
 @Injectable()
 export class CustomGuard implements CanActivate {
   canActivate(
@@ -16,7 +11,7 @@ export class CustomGuard implements CanActivate {
     if (request.header("Authorization") == "demo") {
       return true
     }else{
-      throw new InternalServerErrorException()
+      throw new UnauthorizedException()
     }
   }
 }
