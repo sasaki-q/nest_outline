@@ -2,7 +2,7 @@ import { Body, Controller, Get, Headers, InternalServerErrorException, UseFilter
 import { User } from 'src/common/decorators';
 import { CustomFilter } from 'src/common/filters';
 import { CustomGuard } from 'src/common/guards';
-import { CustomInterceptor } from 'src/common/decorators/interceptors';
+import { CustomInterceptor } from 'src/common/interceptors';
 import { DemoService } from './demo.service';
 import { DemoFilterDto, DemoGuardDto, DemoTransactionDto } from "./dto";
 

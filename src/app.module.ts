@@ -33,10 +33,6 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 export class AppModule implements NestModule{
   configure(consumer: MiddlewareConsumer){
     consumer.apply(CustomMiddleware).exclude(
-      /*
-        { path: 'cats', method: RequestMethod.GET },
-        { path: 'cats', method: RequestMethod.POST },
-      */
     ).forRoutes("/apis");
   }
 }
