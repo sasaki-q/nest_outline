@@ -3,17 +3,17 @@ import { ApisModule } from './apis/apis.module';
 import { CustomMiddleware } from './common/middleware';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmOptions } from './config/db';
+import { typeOrmOpts } from './config/database';
 
 @Module({
   imports: [
-    ApisModule,
+    TypeOrmModule.forRoot(typeOrmOpts),
     ConfigModule.forRoot({
       isGlobal: true,
       ignoreEnvFile: true,
-      envFilePath: `.env${process.env.NODE_ENV == "dev" ? "" : ".production"} `
+      envFilePath: `.env${process.env.NODE_ENV === "development" ? "" : ".production"} `
     }),
-    TypeOrmModule.forRoot(typeOrmOptions),
+    ApisModule,
   ],
 })
 
