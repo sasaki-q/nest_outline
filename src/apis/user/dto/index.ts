@@ -8,7 +8,7 @@ export class CreateUserDto {
     @IsNotEmpty({message: "名前は必須属性です"})
     name: string
 
-    @ApiProperty({type: UserRole})
+    @ApiProperty({enum: UserRole})
     @IsNotEmpty({message: "役割は必須属性"})
     @IsEnum(UserRole, {message: "RoleはUserRoleを参照してください"})
     @Equals("MASTER" || "ADMIN" || "USER")

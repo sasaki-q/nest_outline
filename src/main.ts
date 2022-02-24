@@ -15,7 +15,7 @@ async function bootstrap() {
   const doc = SwaggerModule.createDocument(app, opts);
   SwaggerModule.setup("swagger", app, doc);
 
-  //app.setGlobalPrefix('apis/v1/')
+  app.setGlobalPrefix('apis/v1/')
   app.useGlobalGuards(new CustomGuard());
   app.useGlobalPipes(new ValidationPipe())
   app.useGlobalFilters(new CustomFilter());
