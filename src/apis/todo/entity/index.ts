@@ -33,5 +33,6 @@ export class Todo {
         createForeignKeyConstraints: false,
     })
     @JoinColumn({ name: "uid", referencedColumnName: "id", })
+    @ApiProperty({type: () => User})
     readonly user: User;
 }

@@ -7,7 +7,6 @@ export class CustomGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean>{
-    console.log("=====")
     const request = context.switchToHttp().getRequest<Request>();
     if (request.header("Authorization") == "demo") {
       return true

@@ -32,5 +32,6 @@ export class User {
         persistence: false,
         createForeignKeyConstraints: false,
     })
+    @ApiProperty({type: [Todo]})
     todos?: Todo[]
 }

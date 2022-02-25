@@ -11,7 +11,8 @@ export class UserController {
     ){}
 
     @Get("/")
-    @ApiResponse({status: HttpStatus.OK})
+    @ApiResponse({status: HttpStatus.OK, type: User})
+    @ApiInternalServerErrorResponse({status: HttpStatus.INTERNAL_SERVER_ERROR, description: "Internal server error"})
     async getUserTodo(@Query() req): Promise<User> {
         return await this.userService.getUserTodo(Number(req.id));
     }
