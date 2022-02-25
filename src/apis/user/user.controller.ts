@@ -1,13 +1,20 @@
-import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
+import { Get, Post, Body, Controller, HttpStatus, Param, Query } from '@nestjs/common';
 import { ApiInternalServerErrorResponse, ApiResponse } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { CreateUserDto, ResponseDto } from './dto';
+import { User } from './entity';
 
 @Controller('user')
 export class UserController {
     constructor(
         private readonly userService: UserService
     ){}
+
+    @Get("/")
+    @ApiResponse({status: HttpStatus.OK})
+    async getUserTodo(@Query() req): Promise<User> {
+        return await this.userService.getUserTodo(Number(req.id));
+    }
 
     @Post("/")
     @ApiResponse({status: HttpStatus.OK, type: ResponseDto})

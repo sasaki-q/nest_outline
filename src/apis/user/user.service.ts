@@ -12,6 +12,28 @@ export class UserService {
         private readonly userRepository: Repository<User>,
     ){}
 
+    async getUserTodo(uid: number): Promise<User> {
+        try{
+            // const user: User[] = await this.userRepository.query(`
+            //     SELECT *, U.id AS user_id, GROUP_CONCAT(T.title, T.content, T.is_done)
+            //     FROM users AS U
+            //     LEFT JOIN todos AS T
+            //     ON U.id = T.uid
+            //     WHERE U.id = ?
+            // `, [uid])
+            const user: User[] = await this.userRepository.find({
+                relations: ["todos"],
+                where: {
+                    id: uid
+                }
+            });
+            return user[0];
+        }catch(err){
+            console.log("DEBUG error message === ", err)
+            throw new InternalServerErrorException()
+        }
+    }
+
     async create (req: CreateUserDto): Promise<ResponseDto> {
         const { name, role } = req;
         const user: User = new User()

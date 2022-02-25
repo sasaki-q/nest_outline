@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Todo } from "src/apis/todo/entity";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserRole } from "../type";
 
 @Entity({name: "users"})
@@ -26,4 +27,10 @@ export class User {
     @CreateDateColumn({name: 'created_at'})
     @ApiProperty({type: Date})
     createdAt: Date
+
+    @OneToMany(() => Todo, todo => todo.user, {
+        persistence: false,
+        createForeignKeyConstraints: false,
+    })
+    todos?: Todo[]
 }
