@@ -16,10 +16,10 @@ async function bootstrap() {
   SwaggerModule.setup("swagger", app, doc);
 
   app.setGlobalPrefix('apis/v1/')
-  app.useGlobalGuards(new CustomGuard());
-  app.useGlobalPipes(new ValidationPipe())
-  app.useGlobalFilters(new CustomFilter());
-  app.useGlobalInterceptors(new CustomInterceptor());
+  // app.useGlobalGuards(new CustomGuard());
+  // app.useGlobalPipes(new ValidationPipe())
+  // app.useGlobalFilters(new CustomFilter());
+  // app.useGlobalInterceptors(new CustomInterceptor());
   
   await app.listen(3000);
 }
