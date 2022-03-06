@@ -21,12 +21,13 @@ export class TodoService {
     async todo(id: number): Promise<Todo> {
         try {
             const todoInfo = await this.todoRepo.findOne(id)
-            if (todoInfo) {
-                throw new NotFoundException()
+            if(!todoInfo) {
+                throw 404;
             }
             return todoInfo;
         }catch(err) {
             console.log("DEBUG error message === ", err)
+            if( err === 404 ) throw new NotFoundException();
             throw new InternalServerErrorException();
         }
     }

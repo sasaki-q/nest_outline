@@ -18,12 +18,12 @@ scalar DateTime
 
 type Query {
   todos: [Todo!]!
-  todo(id: Float!): Todo!
+  todo(id: Int): Todo!
 }
 
 type Mutation {
   create(data: DataType!): Todo!
-  delete(id: Float!): Boolean!
+  delete(id: Int!): Boolean!
 }
 
 input DataType {
