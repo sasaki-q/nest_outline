@@ -10,17 +10,17 @@ export class TodoResolver {
     ){}
 
     @Query(() => [Todo])
-    async getTodos(): Promise<Todo[]> {
-        return await this.todoService.findAll();
+    async todos(): Promise<Todo[]> {
+        return await this.todoService.todos();
     }
 
     @Query(() => Todo)
-    async getTodo(@Args({name: "id", type: () => Number}) id: number): Promise<Todo> {
-        return await this.todoService.findTodo(id)
+    async todo(@Args({name: "id", type: () => Number}) id: number): Promise<Todo> {
+        return await this.todoService.todo(id)
     }
 
-    @Mutation(() => Boolean)
-    async createTodo(@Args({name: "data", type: () => DataType}) data: DataType): Promise<boolean> {
+    @Mutation(() => Todo)
+    async create(@Args({name: "data", type: () => DataType}) data: DataType): Promise<Todo> {
         return await this.todoService.create(data)
     }
 
