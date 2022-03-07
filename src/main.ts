@@ -5,6 +5,8 @@ import { CustomGuard } from './common/guards';
 import { CustomInterceptor } from './common/interceptors';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { GraphqlGuard } from './common/guards/graphql.guard';
+import { GraphqlInterceptor } from './common/interceptors/graphql.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,10 +19,12 @@ async function bootstrap() {
 
   app.setGlobalPrefix('apis/v1/')
   // app.useGlobalGuards(new CustomGuard());
-  // app.useGlobalPipes(new ValidationPipe())
-  // app.useGlobalFilters(new CustomFilter());
   // app.useGlobalInterceptors(new CustomInterceptor());
+  app.useGlobalGuards(new GraphqlGuard());
+  app.useGlobalInterceptors(new GraphqlInterceptor());
+  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new CustomFilter());
   
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();

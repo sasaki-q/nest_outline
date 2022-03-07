@@ -13,14 +13,16 @@ export class CustomFilter<T extends HttpException> implements ExceptionFilter {
     const status = exception.getStatus()
 
     switch(status){
+        case 401:
+          message = "Unauthorized"
         case 403:
-          message = "forbidden"
+          message = "Forbidden"
           break;
         case 404:
-          message = "not found"
+          message = "Not Found"
           break;
         case 500:
-          message = "internal server error"
+          message = "internal Server Error"
           break;
     }
 
