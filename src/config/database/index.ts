@@ -8,7 +8,7 @@ export const typeOrmOpts: TypeOrmModuleOptions = {
     host: process.env.HOST,
     port: 3306,
     username: process.env.USERNAME,
-    password: process.env.PASS,
+    password: process.env.PASSWORD,
     database: process.env.DATABASE,
     entities: [User, Todo],
     synchronize: false,
